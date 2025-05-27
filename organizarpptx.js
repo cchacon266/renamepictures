@@ -1,12 +1,12 @@
 const fs = require('fs');
 const path = require('path');
 
-const carpetaOrigen = path.join(__dirname, 'pptx'); // Cambia si tus archivos están en otra carpeta
-const carpetaDestinoBase = path.join(__dirname, 'organizarpptx');
+const carpetaOrigen = path.join(__dirname, 'archivos'); // Cambia si tus archivos están en otra carpeta
+const carpetaDestinoBase = path.join(__dirname, 'carpetas_pptx_organizadas');
 
 fs.readdirSync(carpetaOrigen).forEach(archivo => {
   if (['.ppt', '.pptx'].includes(path.extname(archivo).toLowerCase())) {
-    const match = archivo.match(/TOOL\s*(\d{3,5})/i); // busca TOOL 1047, TOOL 1052, etc.
+    const match = archivo.match(/TOOL\s*(\d{1,6})/i); // busca TOOL 1047, TOOL 1052, etc.
     if (match) {
       const toolNumber = match[1];
       const carpetaTool = path.join(carpetaDestinoBase, toolNumber, toolNumber);
