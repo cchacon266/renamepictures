@@ -18,7 +18,15 @@ fs.readdirSync(carpetaBase).forEach(folder => {
   const subcarpeta = path.join(rutaIntermedia, folder);
   if (fs.existsSync(subcarpeta) && fs.statSync(subcarpeta).isDirectory()) {
     const archivos = fs.readdirSync(subcarpeta)
-      .filter(archivo => path.extname(archivo).toLowerCase() === '.pptx');
+      .filter(archivo => {
+        const ext = path.extname(archivo).toLowerCase();
+        if (ext === '.pptx') return true;
+        if (ext === '.ppt') {
+          console.log(`⚠️ Archivo no compatible para extracción directa: ${archivo}`);
+          return false;
+        }
+        return false;
+      });
 
     archivos.forEach((pptx, index) => {
       const rutaPptx = path.join(subcarpeta, pptx);
