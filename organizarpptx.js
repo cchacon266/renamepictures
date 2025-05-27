@@ -5,7 +5,7 @@ const carpetaOrigen = path.join(__dirname, 'pptx'); // Cambia si tus archivos es
 const carpetaDestinoBase = path.join(__dirname, 'organizarpptx');
 
 fs.readdirSync(carpetaOrigen).forEach(archivo => {
-  if (path.extname(archivo).toLowerCase() === '.pptx') {
+  if (['.ppt', '.pptx'].includes(path.extname(archivo).toLowerCase())) {
     const match = archivo.match(/TOOL\s*(\d{3,5})/i); // busca TOOL 1047, TOOL 1052, etc.
     if (match) {
       const toolNumber = match[1];

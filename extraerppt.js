@@ -18,7 +18,7 @@ fs.readdirSync(carpetaBase).forEach(folder => {
   const subcarpeta = path.join(rutaIntermedia, folder);
   if (fs.existsSync(subcarpeta) && fs.statSync(subcarpeta).isDirectory()) {
     const archivos = fs.readdirSync(subcarpeta)
-      .filter(archivo => path.extname(archivo).toLowerCase() === '.pptx');
+      .filter(archivo => ['.ppt', '.pptx'].includes(path.extname(archivo).toLowerCase()));
 
     archivos.forEach((pptx, index) => {
       const rutaPptx = path.join(subcarpeta, pptx);
