@@ -17,6 +17,7 @@ Renombra todas las imágenes dentro de subcarpetas con el nombre de la carpeta c
 ```bash o cmd
 node renombrarfotos.js
 ```
+Archivos de entrada deben estar en la carpeta `fotos/`.
 
 Estructura esperada: `fotos/1047/1047/imagen.jpg` → `1047.jpg`, `1047(2).jpg`, etc.
 
