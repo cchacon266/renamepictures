@@ -29,6 +29,11 @@ fs.readdirSync(carpetaBase).forEach(folder => {
       });
 
     archivos.forEach((pptx, index) => {
+      if (path.extname(pptx).toLowerCase() !== '.pptx') {
+        console.log(`⚠️ Omitido (no es .pptx): ${pptx}`);
+        return;
+      }
+
       const rutaPptx = path.join(subcarpeta, pptx);
       let contador = 1;
 
@@ -40,6 +45,9 @@ fs.readdirSync(carpetaBase).forEach(folder => {
       }
 
       fs.createReadStream(rutaPptx)
+        .on('error', err => {
+          console.error(`❌ Error leyendo ${pptx}: ${err.message}`);
+        })
         .pipe(unzipper.Parse())
         .on('entry', entry => {
           const fileName = entry.path;
